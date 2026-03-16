@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 240 10% 3.9%;
+        --foreground: 0 0% 98%;
+        --card: 240 6% 10%;
+        --card-foreground: 0 0% 98%;
+        --popover: 240 6% 10%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 217 91% 60%;
+        --primary-foreground: 0 0% 98%;
+        --secondary: 240 4% 16%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 240 4% 16%;
+        --muted-foreground: 240 5% 65%;
+        --accent: 142 71% 45%;
+        --accent-foreground: 0 0% 98%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 240 4% 16%;
+        --input: 240 4% 16%;
+        --ring: 217 91% 60%;
+        --radius: 0rem;
+
+        --surface-elevated: 240 6% 10%;
+        --surface-hover: 240 4% 16%;
+        --glow-primary: 217 91% 60%;
+        --glow-accent: 142 71% 45%;
+
+        --sidebar-background: 240 10% 3.9%;
+        --sidebar-foreground: 0 0% 98%;
+        --sidebar-primary: 217 91% 60%;
+        --sidebar-primary-foreground: 0 0% 98%;
+        --sidebar-accent: 240 4% 16%;
+        --sidebar-accent-foreground: 0 0% 98%;
+        --sidebar-border: 240 4% 16%;
+        --sidebar-ring: 217 91% 60%;
+    }
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground antialiased;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        letter-spacing: -0.04em;
+        text-wrap: balance;
+    }
+
+    .font-mono {
+        font-family: 'JetBrains Mono', monospace;
+        font-feature-settings: 'tnum';
+    }
+}
+
+@layer utilities {
+    .text-gradient-primary {
+        @apply bg-clip-text text-transparent;
+        background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    }
+
+    .border-glow {
+        border-color: hsl(var(--border));
+        transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .border-glow:hover {
+        border-color: hsl(0 0% 100% / 0.4);
+    }
+
+    .surface-elevated {
+        background-color: hsl(var(--surface-elevated));
+    }
+
+    .clip-enter {
+        clip-path: inset(0 0 100% 0);
+        animation: clipReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@keyframes clipReveal {
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    .print-only {
+        display: block !important;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+}
