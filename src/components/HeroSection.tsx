@@ -36,7 +36,7 @@ const HeroSection = () => {
     }, []);
 
     return (
-        <section className="relative min-h-screen flex items-center overflow-hidden" id="hero">
+        <section className="relative min-h-[100svh] flex items-center pt-24 lg:pt-0 overflow-hidden" id="hero">
             {/* Grid background */}
             <div className="absolute inset-0 opacity-[0.03]" style={{
                 backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
@@ -100,10 +100,10 @@ const HeroSection = () => {
                             Results-driven Full Stack &amp; Backend Developer building scalable distributed systems, RESTful APIs, and real-time architectures — extended into ML &amp; scientific computing via Physics-Informed Neural Networks with PyTorch.
                         </motion.p>
 
-                        <motion.div variants={childVariants} className="mt-8 flex gap-4">
+                        <motion.div variants={childVariants} className="mt-8 flex flex-wrap gap-3 sm:gap-4">
                             <a
                                 href="mailto:ayushiskhati305@gmail.com"
-                                className="font-mono text-xs border border-foreground/20 px-4 py-2 hover:border-foreground/60 transition-colors uppercase tracking-widest"
+                                className="font-mono text-xs border border-foreground/20 px-4 py-2 hover:border-foreground/60 transition-colors uppercase tracking-widest whitespace-nowrap"
                             >
                                 ayush --contact
                             </a>
@@ -111,7 +111,7 @@ const HeroSection = () => {
                                 href="https://www.linkedin.com/in/ayush-khati-8a342821b/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="font-mono text-xs border border-foreground/20 px-4 py-2 hover:border-foreground/60 transition-colors uppercase tracking-widest"
+                                className="font-mono text-xs border border-foreground/20 px-4 py-2 hover:border-foreground/60 transition-colors uppercase tracking-widest whitespace-nowrap"
                             >
                                 --linkedin
                             </a>
@@ -119,7 +119,7 @@ const HeroSection = () => {
                                 href="https://github.com/AyushkhatiDev"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="font-mono text-xs border border-foreground/20 px-4 py-2 hover:border-foreground/60 transition-colors uppercase tracking-widest"
+                                className="font-mono text-xs border border-foreground/20 px-4 py-2 hover:border-foreground/60 transition-colors uppercase tracking-widest whitespace-nowrap"
                             >
                                 --github
                             </a>
@@ -127,7 +127,7 @@ const HeroSection = () => {
                                 href="https://x.com/Dropclause2"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="font-mono text-xs border border-foreground/20 px-4 py-2 hover:border-foreground/60 transition-colors uppercase tracking-widest"
+                                className="font-mono text-xs border border-foreground/20 px-4 py-2 hover:border-foreground/60 transition-colors uppercase tracking-widest whitespace-nowrap"
                             >
                                 --x
                             </a>
