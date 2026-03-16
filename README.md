@@ -1,73 +1,104 @@
-# Welcome to your Lovable project
+# Portfolio
 
-## Project info
+A modern, responsive portfolio website showcasing projects, skills, and professional experience.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**Visit the live site**: [https://portfoliokhati.netlify.app/](https://portfoliokhati.netlify.app/)
 
-## How can I edit this code?
+## Overview
 
-There are several ways of editing your application.
+This is a professional portfolio application built with modern web technologies. It features a clean, user-friendly interface that highlights projects, technical skills, and provides multiple ways to get in touch.
 
-**Use Lovable**
+## Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+- **Responsive Design**: Fully responsive layout that works seamlessly on desktop, tablet, and mobile devices
+- **Project Showcase**: Display of featured projects with descriptions and links
+- **Skills Section**: Organized presentation of technical skills and competencies
+- **Contact Integration**: Easy-to-use contact form for inquiries
+- **Dark Mode Support**: Professional UI with theme support
+- **Accessibility**: Built with accessibility best practices in mind
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
+## Tech Stack
 
 This project is built with:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **Vite** - Next generation frontend tooling
+- **React** - UI library for building interactive components
+- **TypeScript** - Type-safe JavaScript development
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn-ui** - High-quality React components
+- **Playwright** - End-to-end testing framework
 
-## How can I deploy this project?
+## Getting Started
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+### Prerequisites
 
-## Can I connect a custom domain to my Lovable project?
+- Node.js 16+ and npm installed
+- Git for version control
 
-Yes, you can!
+### Installation
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. Clone the repository:
+```sh
+git clone https://github.com/AyushkhatiDev/portfolio.git
+cd portfolio
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+2. Install dependencies:
+```sh
+npm install
+```
+
+3. Start the development server:
+```sh
+npm run dev
+```
+
+The application will be available at `http://localhost:5173`
+
+## Development
+
+### Available Scripts
+
+- `npm run dev` - Start the development server with hot reload
+- `npm run build` - Build the project for production
+- `npm run preview` - Preview the production build locally
+- `npm run lint` - Run ESLint to check code quality
+- `npm test` - Run the test suite with Vitest
+
+## Deployment
+
+This project is deployed on Netlify. Any push to the main branch will trigger automatic deployment.
+
+To deploy your own version:
+
+1. Build the project:
+```sh
+npm run build
+```
+
+2. Deploy the `dist` folder to your hosting platform (Netlify, Vercel, GitHub Pages, etc.)
+
+## Project Structure
+
+```
+src/
+├── components/       # Reusable React components
+├── pages/           # Page components
+├── assets/          # Images and static files
+├── hooks/           # Custom React hooks
+├── lib/             # Utility functions
+├── styles/          # Global CSS files
+└── main.tsx         # Application entry point
+```
+
+## Contributing
+
+Contributions are welcome! Feel free to fork this repository and submit a pull request with your improvements.
+
+## License
+
+This project is open source and available under the MIT License.
+
+## Contact
+
+For inquiries, feel free to reach out through the contact form on the [portfolio website](https://portfoliokhati.netlify.app/) or connect on social media.
