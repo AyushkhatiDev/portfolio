@@ -47,8 +47,8 @@ const socials = [
     },
     {
         label: "Email",
-        handle: "ayushkhati@email.com",
-        href: "mailto:ayushkhati@email.com",
+        handle: "ayushiskhati305@gmail.com",
+        href: "mailto:ayushiskhati305@gmail.com",
         Icon: Mail,
     },
 ];
@@ -311,10 +311,10 @@ const ContactSection = () => {
                                 <div className="flex items-center gap-3">
                                     <Mail size={14} className="text-accent shrink-0" />
                                     <a
-                                        href="mailto:ayushkhati@email.com"
+                                        href="mailto:ayushiskhati305@gmail.com"
                                         className="font-mono text-xs hover:text-accent transition-colors underline underline-offset-4 decoration-foreground/20 hover:decoration-accent"
                                     >
-                                        ayushkhati@email.com
+                                        ayushiskhati305@gmail.com
                                     </a>
                                 </div>
                             </div>
