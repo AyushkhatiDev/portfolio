@@ -15,7 +15,7 @@ const Index = () => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if ((e.metaKey || e.ctrlKey) && e.key === "k") {
                 e.preventDefault();
-                window.open("https://drive.google.com/file/d/1Z9xMlHV3L-yR9bXCkzhBAWt2aINmtbhM/view", "_blank");
+                window.open("https://drive.google.com/file/d/1OKL3qENSfGGf6PU-twSgnwmeKxehwFT5/view?usp=drivesdk", "_blank");
             }
         };
         window.addEventListener("keydown", handleKeyDown);

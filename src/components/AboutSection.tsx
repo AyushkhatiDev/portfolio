@@ -137,7 +137,17 @@ const AboutSection = () => {
                                         machine learning and scientific computing
                                     </span>
                                     , where I develop Physics-Informed Neural Networks (PINNs) with{" "}
-                                    PyTorch to model and solve complex partial differential equations.
+                                    PyTorch to model and solve complex partial differential equations.{" "}
+                                    I have also published research, including my recent paper on{" "}
+                                    <a
+                                        href="https://github.com/AyushkhatiDev/data-extractor/blob/main/paper/DataExtractor%20copy.pdf"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-foreground font-semibold underline decoration-foreground/30 hover:decoration-accent underline-offset-4 transition-colors"
+                                    >
+                                        Data Extraction Systems
+                                    </a>
+                                    .
                                 </p>
                                 <p className="text-muted-foreground leading-relaxed">
                                     Currently, I develop production-grade software at{" "}

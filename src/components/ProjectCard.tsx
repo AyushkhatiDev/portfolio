@@ -13,11 +13,12 @@ interface ProjectCardProps {
     metrics: Metric[];
     tech: string[];
     liveLink: string;
+    paperLink?: string;
     image: string;
     index: number;
 }
 
-const ProjectCard = ({ title, subtitle, description, metrics, tech, liveLink, image, index }: ProjectCardProps) => {
+const ProjectCard = ({ title, subtitle, description, metrics, tech, liveLink, paperLink, image, index }: ProjectCardProps) => {
     return (
         <motion.div
             initial={{ clipPath: "inset(0 0 100% 0)", opacity: 0 }}
@@ -38,8 +39,20 @@ const ProjectCard = ({ title, subtitle, description, metrics, tech, liveLink, im
                     </h3>
                     <p className="font-mono text-xs text-primary mt-2 uppercase group-hover:tracking-[0.2em] transition-all duration-500">{subtitle}</p>
                 </div>
-                <div className="font-mono text-[10px] text-accent bg-accent/10 px-2 py-1 shrink-0">
-                    LIVE_PRODUCTION
+                <div className="flex gap-2">
+                    {paperLink && (
+                        <a
+                            href={paperLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-mono text-[10px] text-primary bg-primary/10 border border-primary/20 hover:bg-primary/20 px-2 py-1 shrink-0 transition-colors uppercase tracking-widest"
+                        >
+                            READ PAPER
+                        </a>
+                    )}
+                    <div className="font-mono text-[10px] text-accent bg-accent/10 px-2 py-1 shrink-0">
+                        LIVE_PRODUCTION
+                    </div>
                 </div>
             </div>
 

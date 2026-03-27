@@ -22,7 +22,7 @@ const TopNav = () => {
                         Contact
                     </a>
                     <a
-                        href="https://drive.google.com/file/d/1Z9xMlHV3L-yR9bXCkzhBAWt2aINmtbhM/view"
+                        href="https://drive.google.com/file/d/1OKL3qENSfGGf6PU-twSgnwmeKxehwFT5/view?usp=drivesdk"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-1.5 font-mono text-[10px] text-muted-foreground hover:text-foreground uppercase tracking-widest transition-colors"

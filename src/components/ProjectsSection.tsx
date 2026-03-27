@@ -4,8 +4,25 @@ import pinnImg from "@/assets/pinn-project.jpg";
 import opdImg from "@/assets/opd-project.jpg";
 import hamroImg from "@/assets/hamrobazaar-project.jpg";
 import pharmacyImg from "@/assets/pharmacy-project.jpg";
+import dataExtractorImg from "@/assets/data-extractor-project.png";
 
 const projects = [
+    {
+        title: "DATA EXTRACTOR",
+        subtitle: "Multi-Source Extraction Platform",
+        description:
+            "Engineered a multi-source data extraction pipeline leveraging Playwright and BeautifulSoup, augmented by a local-first AI enrichment stack (Ollama, LangExtract). Implemented robust validation, cross-source deduplication, and a 4-tier provider fallback chain. Backed by a Flask/MySQL architecture and Redis message queues to ensure resilient, high-throughput scalable scraping.",
+        metrics: [
+            { label: "AI Stack", value: "Local-First" },
+            { label: "Data Quality", value: "Deduplication" },
+            { label: "Extraction", value: "9+ Sources" },
+            { label: "Export Formats", value: "CSV, Excel, JSON" },
+        ],
+        tech: ["Flask", "MySQL", "Redis", "Playwright", "Ollama", "LangExtract"],
+        liveLink: "https://data-extractor-1-laq7.onrender.com/",
+        paperLink: "https://github.com/AyushkhatiDev/data-extractor/blob/main/paper/DataExtractor%20copy.pdf",
+        image: dataExtractorImg,
+    },
     {
         title: "PINN PDE SOLVER",
         subtitle: "Physics-Informed Neural Networks",
