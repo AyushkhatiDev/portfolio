@@ -5,8 +5,26 @@ import opdImg from "@/assets/opd-project.jpg";
 import hamroImg from "@/assets/hamrobazaar-project.jpg";
 import pharmacyImg from "@/assets/pharmacy-project.jpg";
 import dataExtractorImg from "@/assets/data-extractor-project.png";
+import llmEvalImg from "@/assets/llm-eval-dashboard.jpeg";
 
 const projects = [
+    {
+        title: "LLM EVAL",
+        subtitle: "Open-Source LLM Evaluation Framework",
+        description:
+            "Built a self-hostable evaluation framework for AI teams to catch model regressions before users do. It runs a 27-test suite across factual accuracy, safety refusals, hallucination resistance, adversarial prompts, and reasoning, with a 3-tier judge chain combining semantic similarity, LLM judging, and regex fallback. Every run persists to PostgreSQL and feeds a live dashboard for pass rates, latency percentiles, failure taxonomy, and per-test inspection.",
+        metrics: [
+            { label: "Eval Suite", value: "27 Tests" },
+            { label: "Hallucination Accuracy", value: "86%" },
+            { label: "Baseline Lift", value: "+36 pts" },
+            { label: "Judge Chain", value: "3 Tiers" },
+        ],
+        tech: ["Flask", "PostgreSQL", "Groq", "Next.js", "Vercel", "Render", "Neon"],
+        liveLink: "https://llm-eval-silk.vercel.app/",
+        githubLink: "https://github.com/AyushkhatiDev/llm-eval",
+        researchLink: "https://lnkd.in/gGEPiHsS",
+        image: llmEvalImg,
+    },
     {
         title: "DATA EXTRACTOR",
         subtitle: "Multi-Source Extraction Platform",

@@ -14,11 +14,25 @@ interface ProjectCardProps {
     tech: string[];
     liveLink: string;
     paperLink?: string;
+    githubLink?: string;
+    researchLink?: string;
     image: string;
     index: number;
 }
 
-const ProjectCard = ({ title, subtitle, description, metrics, tech, liveLink, paperLink, image, index }: ProjectCardProps) => {
+const ProjectCard = ({
+    title,
+    subtitle,
+    description,
+    metrics,
+    tech,
+    liveLink,
+    paperLink,
+    githubLink,
+    researchLink,
+    image,
+    index,
+}: ProjectCardProps) => {
     return (
         <motion.div
             initial={{ clipPath: "inset(0 0 100% 0)", opacity: 0 }}
@@ -29,7 +43,7 @@ const ProjectCard = ({ title, subtitle, description, metrics, tech, liveLink, pa
             className="group relative border border-foreground/10 bg-card p-6 lg:p-8 border-glow transition-colors duration-500"
         >
             {/* Header */}
-            <div className="flex justify-between items-start mb-8 lg:mb-12">
+            <div className="flex flex-col gap-5 md:flex-row md:justify-between md:items-start mb-8 lg:mb-12">
                 <div>
                     <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest block mb-2">
                         PROJECT_{String(index + 1).padStart(2, "0")}
@@ -39,7 +53,7 @@ const ProjectCard = ({ title, subtitle, description, metrics, tech, liveLink, pa
                     </h3>
                     <p className="font-mono text-xs text-primary mt-2 uppercase group-hover:tracking-[0.2em] transition-all duration-500">{subtitle}</p>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2 md:justify-end">
                     {paperLink && (
                         <a
                             href={paperLink}
@@ -48,6 +62,26 @@ const ProjectCard = ({ title, subtitle, description, metrics, tech, liveLink, pa
                             className="font-mono text-[10px] text-primary bg-primary/10 border border-primary/20 hover:bg-primary/20 px-2 py-1 shrink-0 transition-colors uppercase tracking-widest"
                         >
                             READ PAPER
+                        </a>
+                    )}
+                    {researchLink && (
+                        <a
+                            href={researchLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-mono text-[10px] text-primary bg-primary/10 border border-primary/20 hover:bg-primary/20 px-2 py-1 shrink-0 transition-colors uppercase tracking-widest"
+                        >
+                            RESEARCH
+                        </a>
+                    )}
+                    {githubLink && (
+                        <a
+                            href={githubLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-mono text-[10px] text-foreground bg-foreground/5 border border-foreground/10 hover:bg-foreground/10 px-2 py-1 shrink-0 transition-colors uppercase tracking-widest"
+                        >
+                            GITHUB
                         </a>
                     )}
                     <div className="font-mono text-[10px] text-accent bg-accent/10 px-2 py-1 shrink-0">
