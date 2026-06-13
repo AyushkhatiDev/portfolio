@@ -131,6 +131,14 @@ const HeroSection = () => {
                             >
                                 --x
                             </a>
+                            <a
+                                href="https://medium.com/@ayushiskhati305"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-mono text-xs border border-foreground/20 px-4 py-2 hover:border-foreground/60 transition-colors uppercase tracking-widest whitespace-nowrap"
+                            >
+                                --medium
+                            </a>
                         </motion.div>
                     </div>
 

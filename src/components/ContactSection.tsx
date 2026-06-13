@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useRef } from "react";
 import { useInView } from "framer-motion";
-import { Mail, MapPin, Send, Github, Linkedin, Twitter, ExternalLink, ArrowRight } from "lucide-react";
+import { Mail, MapPin, Send, Github, Linkedin, Twitter, BookOpen, ExternalLink, ArrowRight } from "lucide-react";
 
 const containerVariants = {
     hidden: {},
@@ -44,6 +44,12 @@ const socials = [
         handle: "@ayushkhati",
         href: "https://twitter.com/ayushkhati",
         Icon: Twitter,
+    },
+    {
+        label: "Medium",
+        handle: "@ayushiskhati305",
+        href: "https://medium.com/@ayushiskhati305",
+        Icon: BookOpen,
     },
     {
         label: "Email",
