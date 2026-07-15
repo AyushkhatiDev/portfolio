@@ -25,7 +25,7 @@ const experience = [
 const interests = [
     "Distributed Systems",
     "Scientific Computing",
-    "Data Strucutre and Algorithms",
+    "Data Structures and Algorithms",
     "Physics-Informed Neural Networks",
     "System Design",
     "Open Source",

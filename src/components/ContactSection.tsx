@@ -29,20 +29,20 @@ const fadeUp = {
 const socials = [
     {
         label: "GitHub",
-        handle: "@edwardkhati",
-        href: "https://github.com/edwardkhati",
+        handle: "@AyushkhatiDev",
+        href: "https://github.com/AyushkhatiDev",
         Icon: Github,
     },
     {
         label: "LinkedIn",
         handle: "Ayush Khati",
-        href: "https://www.linkedin.com/in/ayush-khati",
+        href: "https://www.linkedin.com/in/ayush-khati-8a342821b/",
         Icon: Linkedin,
     },
     {
         label: "X / Twitter",
-        handle: "@ayushkhati",
-        href: "https://twitter.com/ayushkhati",
+        handle: "@Dropclause2",
+        href: "https://x.com/Dropclause2",
         Icon: Twitter,
     },
     {
@@ -64,21 +64,31 @@ const ContactSection = () => {
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
     const [form, setForm] = useState({ name: "", email: "", message: "" });
-    const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+    const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
     const [focused, setFocused] = useState<string | null>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setStatus("sending");
-        // Simulate sending
-        setTimeout(() => {
-            setStatus("sent");
-            setForm({ name: "", email: "", message: "" });
-        }, 1500);
+        try {
+            const res = await fetch("https://formspree.io/f/mnjenwaj", {
+                method: "POST",
+                headers: { Accept: "application/json" },
+                body: new FormData(e.currentTarget),
+            });
+            if (res.ok) {
+                setStatus("sent");
+                setForm({ name: "", email: "", message: "" });
+            } else {
+                setStatus("error");
+            }
+        } catch {
+            setStatus("error");
+        }
     };
 
     return (
@@ -285,6 +295,12 @@ const ContactSection = () => {
                                             </>
                                         )}
                                     </motion.button>
+
+                                    {status === "error" && (
+                                        <p className="font-mono text-xs text-red-500 text-center">
+                                            Something went wrong. Please try again or email me directly.
+                                        </p>
+                                    )}
                                 </form>
                             )}
                         </motion.div>
