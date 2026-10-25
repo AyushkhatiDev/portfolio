@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Play, Radio } from "lucide-react";
+import { ArrowUpRight, Play, Radio, ExternalLink } from "lucide-react";
 
 interface Metric {
     label: string;
@@ -68,19 +68,41 @@ const ProjectCard = ({
                     <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest block mb-2">
                         PROJECT_{String(index + 1).padStart(2, "0")}
                     </span>
-                    <h3 className={`text-3xl lg:text-5xl font-black tracking-tighter uppercase leading-none transition-all duration-500 ${
-                        featured ? "text-gradient-primary" : "group-hover:text-gradient-primary"
-                    }`}>
-                        {title}
-                    </h3>
+                    <a
+                        href={liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block group/title"
+                    >
+                        <h3 className={`text-3xl lg:text-5xl font-black tracking-tighter uppercase leading-none transition-all duration-500 ${
+                            featured ? "text-gradient-primary group-hover/title:brightness-125" : "group-hover:text-gradient-primary"
+                        }`}>
+                            {title}
+                        </h3>
+                    </a>
                     <p className="font-mono text-xs text-primary mt-2 uppercase group-hover:tracking-[0.2em] transition-all duration-500">{subtitle}</p>
                 </div>
-                <div className="flex flex-wrap gap-2 md:justify-end">
+                <div className="flex flex-wrap gap-2 md:justify-end items-center">
                     {featured && (
                         <div className="font-mono text-[10px] text-background bg-gradient-to-r from-primary to-accent px-3 py-1.5 shrink-0 uppercase tracking-widest font-bold flex items-center gap-1.5 shadow-[0_0_20px_-5px_hsl(217_91%_60%/0.5)]">
                             <span className="w-1.5 h-1.5 rounded-full bg-background animate-pulse" />
                             HACKATHON
                         </div>
+                    )}
+                    {liveLink && (
+                        <a
+                            href={liveLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`font-mono text-[10px] px-2.5 py-1 shrink-0 transition-all uppercase tracking-widest flex items-center gap-1.5 font-bold ${
+                                featured
+                                    ? "text-background bg-accent hover:bg-accent/80 shadow-[0_0_15px_-3px_hsl(var(--accent)/0.5)]"
+                                    : "text-accent bg-accent/10 border border-accent/20 hover:bg-accent/20"
+                            }`}
+                        >
+                            <ExternalLink size={10} strokeWidth={2} />
+                            LIVE DEMO
+                        </a>
                     )}
                     {demoVideoLink && (
                         <a
@@ -141,7 +163,16 @@ const ProjectCard = ({
             </div>
 
             {/* Image */}
-            <div className={`mb-8 overflow-hidden border ${featured ? "border-primary/10" : "border-foreground/5"}`}>
+            <a
+                href={liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`block mb-8 overflow-hidden border transition-all duration-300 ${
+                    featured
+                        ? "border-primary/20 hover:border-accent/60 shadow-[0_0_30px_-10px_hsl(217_91%_60%/0.2)]"
+                        : "border-foreground/5 hover:border-foreground/20"
+                }`}
+            >
                 <img
                     src={image}
                     alt={title}
@@ -150,7 +181,7 @@ const ProjectCard = ({
                     }`}
                     loading="lazy"
                 />
-            </div>
+            </a>
 
             {/* Content Grid */}
             <div className="grid grid-cols-12 gap-6 lg:gap-8">

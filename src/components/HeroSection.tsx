@@ -98,7 +98,16 @@ const HeroSection = () => {
                             variants={childVariants}
                             className="mt-16 max-w-xl text-lg text-muted-foreground leading-relaxed"
                         >
-                            Results-driven Full Stack &amp; Backend Developer building scalable distributed systems, RESTful APIs, and real-time architectures — extended into ML &amp; scientific computing via Physics-Informed Neural Networks with PyTorch. Most recently built MatchLens for Microsoft's Premier League Hackathon.
+                            Results-driven Full Stack &amp; Backend Developer building scalable distributed systems, RESTful APIs, and real-time architectures — extended into ML &amp; scientific computing via Physics-Informed Neural Networks with PyTorch. Most recently built{" "}
+                            <a
+                                href="https://matchlens-web.ashystone-436ed578.koreacentral.azurecontainerapps.io/demo"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-foreground font-semibold underline decoration-accent hover:text-accent underline-offset-4 transition-colors"
+                            >
+                                MatchLens (Live Demo)
+                            </a>{" "}
+                            for Microsoft's Premier League Hackathon.
                         </motion.p>
 
                         <motion.div variants={childVariants} className="mt-8 flex flex-wrap gap-3 sm:gap-4">

@@ -154,14 +154,30 @@ const AboutSection = () => {
                                 <p className="text-muted-foreground leading-relaxed">
                                     Most recently, I built{" "}
                                     <a
-                                        href="https://github.com/AyushkhatiDev/MATCHLENS"
+                                        href="https://matchlens-web.ashystone-436ed578.koreacentral.azurecontainerapps.io/demo"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="text-foreground font-semibold underline decoration-foreground/30 hover:decoration-accent underline-offset-4 transition-colors"
                                     >
                                         MatchLens
                                     </a>{" "}
-                                    for{" "}
+                                    (<a
+                                        href="https://matchlens-web.ashystone-436ed578.koreacentral.azurecontainerapps.io/demo"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-accent hover:underline underline-offset-4 transition-colors"
+                                    >
+                                        Live Demo
+                                    </a>
+                                    {" · "}
+                                    <a
+                                        href="https://github.com/AyushkhatiDev/MATCHLENS"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors"
+                                    >
+                                        GitHub
+                                    </a>) for{" "}
                                     <span className="text-foreground font-semibold">
                                         Microsoft's Inside the Game: Developer Hackathon
                                     </span>{" "}
