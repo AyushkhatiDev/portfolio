@@ -11,7 +11,7 @@ const skillCategories = [
     },
     {
         label: "BACKEND & APIs",
-        items: ["Node.js", "Express.js", "Flask", "RESTful APIs", "GraphQL", "WebSockets (Socket.io)", "WebRTC"],
+        items: ["Node.js", "Express.js", "Flask", "FastAPI", "RESTful APIs", "GraphQL", "WebSockets (Socket.io)", "WebRTC"],
     },
     {
         label: "ML & SCIENTIFIC",
@@ -27,7 +27,11 @@ const skillCategories = [
     },
     {
         label: "COMPETENCIES",
-        items: ["Distributed Systems", "System Design", "Microservices", "CI/CD", "RBAC", "JWT", "DSA", "OOP", "Agile/Scrum"],
+        items: ["Distributed Systems", "System Design", "Microservices", "CI/CD", "RBAC", "JWT", "DSA", "OOP", "Agile/Scrum", "Event-Driven Architecture"],
+    },
+    {
+        label: "CLOUD & STREAMING",
+        items: ["Azure Event Hubs", "Microsoft Fabric", "Azure AI Foundry", "Azure Container Apps", "SSE / Server-Sent Events", "Pydantic"],
     },
 ];
 
