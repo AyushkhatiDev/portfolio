@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
+import matchlensImg from "@/assets/matchlens-project.jpg";
 import pinnImg from "@/assets/pinn-project.jpg";
 import opdImg from "@/assets/opd-project.jpg";
 import hamroImg from "@/assets/hamrobazaar-project.jpg";
@@ -8,6 +9,25 @@ import dataExtractorImg from "@/assets/data-extractor-project.png";
 import llmEvalImg from "@/assets/llm-eval-dashboard.jpeg";
 
 const projects = [
+    {
+        title: "MATCHLENS",
+        subtitle: "AI-Powered Football Match Intelligence Platform",
+        description:
+            "Built for Microsoft's Inside the Game: Developer Hackathon in collaboration with the Premier League. MatchLens turns synthetic football match events into measured match state, evidence-linked explanations, and an interactive viewing experience. Features a deterministic intelligence engine that derives possession sequences, tactical classifications, rolling statistics, and significant moments. Includes a Story Stress Test that compares observed and omitted tactical readings, routed agent workflows with Microsoft Foundry, and an optional Azure Event Hubs streaming path with Fabric ingestion — all with evidence-grounded, validator-checked explanations.",
+        metrics: [
+            { label: "Events Processed", value: "1,728" },
+            { label: "Processing Errors", value: "0" },
+            { label: "Audience Modes", value: "4 Views" },
+            { label: "Hackathon", value: "Microsoft × PL" },
+        ],
+        tech: ["Next.js", "FastAPI", "Python", "Azure Event Hubs", "Microsoft Foundry", "Fabric", "Docker", "SSE"],
+        liveLink: "https://matchlens-web.ashystone-436ed578.koreacentral.azurecontainerapps.io/demo",
+        githubLink: "https://github.com/AyushkhatiDev/MATCHLENS",
+        demoVideoLink: "https://vimeo.com/1238417597?share=copy&fl=sv&fe=ci",
+        streamLink: "https://matchlens-web.ashystone-436ed578.koreacentral.azurecontainerapps.io/stream",
+        image: matchlensImg,
+        featured: true,
+    },
     {
         title: "LLM EVAL",
         subtitle: "Open-Source LLM Evaluation Framework",

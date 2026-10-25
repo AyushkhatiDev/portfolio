@@ -6,6 +6,7 @@ const titles = [
     "SYSTEMS ARCHITECT",
     "PDE SOLVER",
     "FULL-STACK ENGINEER",
+    "MATCH INTELLIGENCE",
     "BACKEND SPECIALIST",
 ];
 
@@ -97,7 +98,7 @@ const HeroSection = () => {
                             variants={childVariants}
                             className="mt-16 max-w-xl text-lg text-muted-foreground leading-relaxed"
                         >
-                            Results-driven Full Stack &amp; Backend Developer building scalable distributed systems, RESTful APIs, and real-time architectures — extended into ML &amp; scientific computing via Physics-Informed Neural Networks with PyTorch.
+                            Results-driven Full Stack &amp; Backend Developer building scalable distributed systems, RESTful APIs, and real-time architectures — extended into ML &amp; scientific computing via Physics-Informed Neural Networks with PyTorch. Most recently built MatchLens for Microsoft's Premier League Hackathon.
                         </motion.p>
 
                         <motion.div variants={childVariants} className="mt-8 flex flex-wrap gap-3 sm:gap-4">

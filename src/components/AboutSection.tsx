@@ -28,6 +28,8 @@ const interests = [
     "Data Structures and Algorithms",
     "Physics-Informed Neural Networks",
     "System Design",
+    "AI & Sports Analytics",
+    "Event-Driven Architecture",
     "Open Source",
     "Backend Architecture",
 ];
@@ -148,6 +150,24 @@ const AboutSection = () => {
                                         Data Extraction Systems
                                     </a>
                                     .
+                                </p>
+                                <p className="text-muted-foreground leading-relaxed">
+                                    Most recently, I built{" "}
+                                    <a
+                                        href="https://github.com/AyushkhatiDev/MATCHLENS"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-foreground font-semibold underline decoration-foreground/30 hover:decoration-accent underline-offset-4 transition-colors"
+                                    >
+                                        MatchLens
+                                    </a>{" "}
+                                    for{" "}
+                                    <span className="text-foreground font-semibold">
+                                        Microsoft's Inside the Game: Developer Hackathon
+                                    </span>{" "}
+                                    in collaboration with the Premier League — an AI-powered football
+                                    match intelligence platform using FastAPI, Azure Event Hubs,
+                                    Microsoft Foundry, and deterministic analytics.
                                 </p>
                                 <p className="text-muted-foreground leading-relaxed">
                                     Currently, I develop production-grade software at{" "}
