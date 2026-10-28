@@ -1,53 +1,38 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import TopNav from "@/components/TopNav";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
 import ContactSection from "@/components/ContactSection";
-import SystemFooter from "@/components/SystemFooter";
 
 const Index = () => {
-    const [currentSection, setCurrentSection] = useState("HERO");
-
-    // Cmd+K shortcut
     useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-                e.preventDefault();
-                window.open("https://drive.google.com/file/d/1cXFF-OSppppImjtf52AaTHlYIhIIFceq/view?usp=drive_link", "_blank");
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+                event.preventDefault();
+                const link = document.createElement("a");
+                link.href = "/ayush-khati-resume.pdf";
+                link.download = "ayush-khati-resume.pdf";
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
             }
         };
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, []);
 
-    // Track current section
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setCurrentSection(entry.target.id.toUpperCase());
-                    }
-                });
-            },
-            { threshold: 0.3 }
-        );
-
-        document.querySelectorAll("section[id]").forEach((el) => observer.observe(el));
-        return () => observer.disconnect();
-    }, []);
-
     return (
-        <div className="min-h-screen bg-background pb-10">
+        <div className="min-h-screen bg-background">
             <TopNav />
-            <HeroSection />
-            <AboutSection />
-            <ProjectsSection />
-            <SkillsSection />
-            <ContactSection />
-            <SystemFooter currentSection={currentSection} />
+            <main>
+                <HeroSection />
+                <AboutSection />
+                <ProjectsSection />
+                <SkillsSection />
+                <ContactSection />
+            </main>
         </div>
     );
 };
