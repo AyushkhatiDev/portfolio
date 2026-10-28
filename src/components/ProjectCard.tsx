@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { ArrowUpRight, Play, Radio, ExternalLink } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Play, Radio } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface Metric {
     label: string;
@@ -12,13 +12,15 @@ interface ProjectCardProps {
     description: string;
     metrics: Metric[];
     tech: string[];
-    liveLink: string;
+    liveLink?: string;
+    primaryLinkLabel?: string;
     paperLink?: string;
     githubLink?: string;
+    statsLink?: string;
     researchLink?: string;
     demoVideoLink?: string;
     streamLink?: string;
-    image: string;
+    image?: string;
     index: number;
     featured?: boolean;
 }
@@ -30,8 +32,10 @@ const ProjectCard = ({
     metrics,
     tech,
     liveLink,
+    primaryLinkLabel = "Live",
     paperLink,
     githubLink,
+    statsLink,
     researchLink,
     demoVideoLink,
     streamLink,
@@ -39,202 +43,67 @@ const ProjectCard = ({
     index,
     featured,
 }: ProjectCardProps) => {
+    const reduceMotion = useReducedMotion();
+
     return (
-        <motion.div
-            initial={{ clipPath: "inset(0 0 100% 0)", opacity: 0 }}
-            whileInView={{ clipPath: "inset(0 0 0% 0)", opacity: 1 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: index * 0.1 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -4, boxShadow: featured ? "0 12px 40px -10px hsl(217 91% 60% / 0.25)" : "0 8px 30px -10px hsl(217 91% 60% / 0.15)" }}
-            className={`group relative border bg-card p-6 lg:p-8 transition-colors duration-500 ${
-                featured
-                    ? "border-primary/30 bg-gradient-to-br from-card via-card to-primary/[0.03] shadow-[0_0_60px_-15px_hsl(217_91%_60%/0.1)]"
-                    : "border-foreground/10 border-glow"
-            }`}
-        >
-            {/* Featured gradient border overlay */}
-            {featured && (
-                <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
-                    <div className="absolute top-0 left-0 bottom-0 w-[1px] bg-gradient-to-b from-primary/40 via-transparent to-accent/30" />
-                    <div className="absolute top-0 right-0 bottom-0 w-[1px] bg-gradient-to-b from-primary/40 via-transparent to-accent/30" />
+    <motion.article
+        initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+        whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+        whileHover={reduceMotion ? undefined : { y: -4 }}
+        viewport={{ once: true, amount: 0.12 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className={`group grid overflow-hidden border border-foreground/15 transition-[border-color,box-shadow] hover:border-accent/45 hover:shadow-[0_24px_60px_hsl(var(--background)/0.38)] ${featured ? "bg-card" : "bg-background"} lg:grid-cols-12`}
+    >
+        <div className={`relative min-h-56 overflow-hidden border-b border-foreground/10 lg:col-span-5 lg:min-h-[400px] lg:border-b-0 lg:border-r ${image ? "bg-card" : "bg-secondary/40"}`}>
+            {image ? (
+                <img src={image} alt={`${title} project interface`} loading="lazy" className="absolute inset-0 h-full w-full object-cover grayscale-[30%] transition duration-700 ease-out group-hover:scale-[1.04] group-hover:brightness-[0.58] group-hover:grayscale-0 group-focus-within:scale-[1.04] group-focus-within:brightness-[0.58] group-focus-within:grayscale-0" />
+            ) : (
+                <div className="absolute inset-0 flex flex-col justify-between px-6 pb-6 pt-16 sm:px-8 sm:pb-8 sm:pt-20">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">{title === "SENTINEL" ? "LIVE INGESTION / WORKER POOL" : "STATIC ANALYSIS / AST ENGINE"}</span>
+                    <div aria-hidden="true" className="grid grid-cols-5 gap-2 sm:gap-3">
+                        {(title === "SENTINEL" ? Array.from({ length: 15 }, (_, i) => `CAM_${String(i + 1).padStart(2, "0")}`) : ["PY", "AST", "CFG", "TAINT", "AUTH", "SQL", "XSS", "CMD", "PATH", "DEP", "JWT", "SSRF", "XXE", "DESER", "EVAL"]).map((cell) => (
+                            <span key={cell} className="flex aspect-square items-center justify-center border border-foreground/10 bg-background/60 font-mono text-[8px] text-muted-foreground sm:text-[9px]">{cell}</span>
+                        ))}
+                    </div>
+                    <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">{title === "SENTINEL" ? "15 isolated feeds · bounded queues" : "24 vulnerability patterns · 179 tests"}</p>
                 </div>
             )}
+            <div aria-hidden="true" className="project-brief pointer-events-none absolute inset-0 flex translate-y-2 flex-col justify-end bg-gradient-to-t from-background via-background/95 to-background/35 p-6 opacity-0 transition duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100 sm:p-8">
+                <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-accent">System brief</p>
+                <h4 className="mt-2 text-xl font-medium tracking-[-0.04em] text-foreground sm:text-2xl">{title}</h4>
+                <p className="mt-2 max-w-md text-xs leading-relaxed text-foreground/80 sm:text-sm">{description}</p>
+                <span className="mt-5 font-mono text-[9px] uppercase tracking-[0.16em] text-foreground/70">Explore system details ↗</span>
+            </div>
+            <span className="absolute left-4 top-4 border border-foreground/15 bg-background/90 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-muted-foreground">CASE {String(index + 1).padStart(2, "0")}</span>
+            {featured && <span className="absolute right-4 top-4 bg-accent px-2.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-wider text-accent-foreground">Featured system</span>}
+        </div>
 
-            {/* Header */}
-            <div className="flex flex-col gap-5 md:flex-row md:justify-between md:items-start mb-8 lg:mb-12">
+        <div className="flex flex-col p-5 sm:p-8 lg:col-span-7 lg:p-10">
+            <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                    <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest block mb-2">
-                        PROJECT_{String(index + 1).padStart(2, "0")}
-                    </span>
-                    <a
-                        href={liveLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block group/title"
-                    >
-                        <h3 className={`text-3xl lg:text-5xl font-black tracking-tighter uppercase leading-none transition-all duration-500 ${
-                            featured ? "text-gradient-primary group-hover/title:brightness-125" : "group-hover:text-gradient-primary"
-                        }`}>
-                            {title}
-                        </h3>
-                    </a>
-                    <p className="font-mono text-xs text-primary mt-2 uppercase group-hover:tracking-[0.2em] transition-all duration-500">{subtitle}</p>
+                    <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-accent">{subtitle}</p>
+                    <h3 className="mt-3 text-3xl font-semibold tracking-[-0.055em] sm:text-4xl">{title}</h3>
                 </div>
-                <div className="flex flex-wrap gap-2 md:justify-end items-center">
-                    {featured && (
-                        <div className="font-mono text-[10px] text-background bg-gradient-to-r from-primary to-accent px-3 py-1.5 shrink-0 uppercase tracking-widest font-bold flex items-center gap-1.5 shadow-[0_0_20px_-5px_hsl(217_91%_60%/0.5)]">
-                            <span className="w-1.5 h-1.5 rounded-full bg-background animate-pulse" />
-                            HACKATHON
-                        </div>
-                    )}
-                    {liveLink && (
-                        <a
-                            href={liveLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`font-mono text-[10px] px-2.5 py-1 shrink-0 transition-all uppercase tracking-widest flex items-center gap-1.5 font-bold ${
-                                featured
-                                    ? "text-background bg-accent hover:bg-accent/80 shadow-[0_0_15px_-3px_hsl(var(--accent)/0.5)]"
-                                    : "text-accent bg-accent/10 border border-accent/20 hover:bg-accent/20"
-                            }`}
-                        >
-                            <ExternalLink size={10} strokeWidth={2} />
-                            LIVE DEMO
-                        </a>
-                    )}
-                    {demoVideoLink && (
-                        <a
-                            href={demoVideoLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-mono text-[10px] text-primary bg-primary/10 border border-primary/20 hover:bg-primary/20 px-2 py-1 shrink-0 transition-colors uppercase tracking-widest flex items-center gap-1.5"
-                        >
-                            <Play size={10} fill="currentColor" />
-                            WATCH DEMO
-                        </a>
-                    )}
-                    {streamLink && (
-                        <a
-                            href={streamLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-mono text-[10px] text-accent bg-accent/10 border border-accent/20 hover:bg-accent/20 px-2 py-1 shrink-0 transition-colors uppercase tracking-widest flex items-center gap-1.5"
-                        >
-                            <Radio size={10} />
-                            STREAM
-                        </a>
-                    )}
-                    {paperLink && (
-                        <a
-                            href={paperLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-mono text-[10px] text-primary bg-primary/10 border border-primary/20 hover:bg-primary/20 px-2 py-1 shrink-0 transition-colors uppercase tracking-widest"
-                        >
-                            READ PAPER
-                        </a>
-                    )}
-                    {researchLink && (
-                        <a
-                            href={researchLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-mono text-[10px] text-primary bg-primary/10 border border-primary/20 hover:bg-primary/20 px-2 py-1 shrink-0 transition-colors uppercase tracking-widest"
-                        >
-                            RESEARCH
-                        </a>
-                    )}
-                    {githubLink && (
-                        <a
-                            href={githubLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-mono text-[10px] text-foreground bg-foreground/5 border border-foreground/10 hover:bg-foreground/10 px-2 py-1 shrink-0 transition-colors uppercase tracking-widest"
-                        >
-                            GITHUB
-                        </a>
-                    )}
-                    <div className="font-mono text-[10px] text-accent bg-accent/10 px-2 py-1 shrink-0">
-                        LIVE_PRODUCTION
-                    </div>
+                <div className="flex flex-wrap gap-2">
+                    {liveLink && <a href={liveLink} target="_blank" rel="noopener noreferrer" className="interactive-link inline-flex items-center gap-1.5 border border-accent/35 px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-wider text-accent hover:bg-accent hover:text-accent-foreground"><ExternalLink size={11} /> {primaryLinkLabel}</a>}
+                    {githubLink && <a href={githubLink} target="_blank" rel="noopener noreferrer" className="border border-foreground/15 px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-wider transition-colors hover:border-accent hover:text-accent">Source</a>}
+                    {statsLink && <a href={statsLink} target="_blank" rel="noopener noreferrer" className="border border-foreground/15 px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-wider transition-colors hover:border-accent hover:text-accent">PyPI stats</a>}
+                    {demoVideoLink && <a href={demoVideoLink} target="_blank" rel="noopener noreferrer" aria-label={`Watch ${title} demo`} className="border border-foreground/15 p-1.5 transition-colors hover:border-accent hover:text-accent"><Play size={13} /></a>}
+                    {streamLink && <a href={streamLink} target="_blank" rel="noopener noreferrer" aria-label={`Open ${title} stream`} className="border border-foreground/15 p-1.5 transition-colors hover:border-accent hover:text-accent"><Radio size={13} /></a>}
+                    {paperLink && <a href={paperLink} target="_blank" rel="noopener noreferrer" className="border border-foreground/15 px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-wider transition-colors hover:border-accent hover:text-accent">Paper</a>}
+                    {researchLink && <a href={researchLink} target="_blank" rel="noopener noreferrer" className="border border-foreground/15 px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-wider transition-colors hover:border-accent hover:text-accent">Research</a>}
                 </div>
             </div>
-
-            {/* Image */}
-            <a
-                href={liveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`block mb-8 overflow-hidden border transition-all duration-300 ${
-                    featured
-                        ? "border-primary/20 hover:border-accent/60 shadow-[0_0_30px_-10px_hsl(217_91%_60%/0.2)]"
-                        : "border-foreground/5 hover:border-foreground/20"
-                }`}
-            >
-                <img
-                    src={image}
-                    alt={title}
-                    className={`w-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out ${
-                        featured ? "h-56 lg:h-80" : "h-48 lg:h-64"
-                    }`}
-                    loading="lazy"
-                />
-            </a>
-
-            {/* Content Grid */}
-            <div className="grid grid-cols-12 gap-6 lg:gap-8">
-                <div className="col-span-12 lg:col-span-7">
-                    <p className="text-muted-foreground text-sm lg:text-base leading-relaxed mb-6">
-                        {description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                        {tech.map((t) => (
-                            <span
-                                key={t}
-                                className={`font-mono text-[10px] border px-2 py-1 uppercase tracking-widest transition-all duration-300 ${
-                                    featured
-                                        ? "border-primary/30 text-primary/80 group-hover:border-primary/50 group-hover:text-primary"
-                                        : "border-foreground/20 text-muted-foreground group-hover:border-primary/40 group-hover:text-foreground"
-                                }`}
-                            >
-                                {t}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-
-                <div className="col-span-12 lg:col-span-5 lg:border-l lg:border-foreground/5 lg:pl-8">
-                    <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-6">
-                        {metrics.map((m) => (
-                            <div key={m.label}>
-                                <div className="text-muted-foreground font-mono text-[10px] uppercase tracking-widest">
-                                    {m.label}
-                                </div>
-                                <div className={`text-xl lg:text-2xl font-mono mt-1 ${
-                                    featured ? "text-primary" : "text-foreground"
-                                }`}>{m.value}</div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+            <p className="mt-5 max-w-3xl text-sm leading-relaxed text-muted-foreground">{description}</p>
+            <div className="mt-7 grid grid-cols-2 border-l border-t border-foreground/10 sm:grid-cols-4">
+                {metrics.map((metric) => <div key={metric.label} className="border-b border-r border-foreground/10 px-3 py-3 sm:px-4"><strong className="block font-mono text-sm tracking-tight text-foreground sm:text-base">{metric.value}</strong><span className="mt-1 block font-mono text-[8px] uppercase leading-snug tracking-wider text-muted-foreground sm:text-[9px]">{metric.label}</span></div>)}
             </div>
-
-            {/* Link */}
-            <a
-                href={liveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`absolute bottom-6 right-6 lg:bottom-8 lg:right-8 transition-all duration-300 ${
-                    featured
-                        ? "text-primary group-hover:text-accent group-hover:rotate-45"
-                        : "text-muted-foreground group-hover:text-accent group-hover:rotate-45"
-                }`}
-            >
-                <ArrowUpRight size={28} strokeWidth={1} />
-            </a>
-        </motion.div>
+            <div className="mt-auto flex flex-wrap items-center gap-x-2 gap-y-1.5 pt-6">
+                {tech.map((item, i) => <span key={item} className="font-mono text-[9px] text-muted-foreground">{item}{i < tech.length - 1 && <span className="ml-2 text-accent/50">/</span>}</span>)}
+            </div>
+            {liveLink && <a href={liveLink} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex w-fit items-center gap-1 font-mono text-[9px] uppercase tracking-wider text-muted-foreground transition-colors hover:text-accent">Explore {primaryLinkLabel.toLowerCase()} <ArrowUpRight size={12} /></a>}
+        </div>
+    </motion.article>
     );
 };
 
