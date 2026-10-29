@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type PointerEvent } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { Download, Github, Linkedin, Mail } from "lucide-react";
 import ayushPhoto from "@/assets/ayush-photo.jpeg";
 
@@ -11,8 +11,10 @@ const HeroSection = () => {
     const reduceMotion = useReducedMotion();
     const heroRef = useRef<HTMLElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
+    const portraitRef = useRef<HTMLDivElement>(null);
     const pointer = useRef({ x: 108, y: 50, titleX: 140, titleY: 50, targetX: 108, targetY: 50, targetTitleX: 140, targetTitleY: 50, active: false, frame: null as number | null });
     const [pointerOverPortrait, setPointerOverPortrait] = useState(false);
+    const portraitInView = useInView(portraitRef, { amount: 0.35, once: true });
     const enter = (delay: number) => ({
         initial: reduceMotion ? false : { opacity: 0, y: 22 },
         animate: reduceMotion ? undefined : { opacity: 1, y: 0 },
@@ -83,9 +85,11 @@ const HeroSection = () => {
                 </motion.div>
 
                 <div className="relative pt-14 lg:min-h-[650px] lg:pt-20">
-                    <motion.div {...enter(0.24)} aria-hidden="true" className="hero-portrait-field pointer-events-none absolute inset-x-0 top-[33rem] -z-10 h-[25rem] sm:top-[28rem] sm:h-[30rem] lg:inset-y-0 lg:left-auto lg:top-0 lg:h-auto lg:w-[47%]">
+                    <motion.div ref={portraitRef} {...enter(0.24)} aria-hidden="true" className={`hero-portrait-field pointer-events-none absolute inset-x-0 top-[33rem] -z-10 h-[25rem] sm:top-[28rem] sm:h-[30rem] lg:inset-y-0 lg:left-auto lg:top-0 lg:h-auto lg:w-[47%] ${portraitInView ? "hero-portrait-online" : ""}`}>
+                        <motion.div initial={reduceMotion ? false : { opacity: 0, scale: 0.86 }} animate={portraitInView || reduceMotion ? { opacity: 1, scale: 1 } : undefined} transition={{ duration: 0.7, ease }} className="hero-mobile-lens absolute inset-0" />
                         <img src={ayushPhoto} alt="" className="hero-portrait h-full w-full object-cover object-[52%_24%] grayscale" />
                         <div className="hero-portrait-wash absolute inset-0" />
+                        <motion.span initial={reduceMotion ? false : { opacity: 0, y: 8 }} animate={portraitInView || reduceMotion ? { opacity: 1, y: 0 } : undefined} transition={{ duration: 0.45, delay: 0.14, ease }} className="hero-profile-online absolute bottom-5 left-5 font-mono text-[9px] uppercase tracking-[0.16em] text-foreground sm:bottom-7 sm:left-8">PROFILE / ONLINE</motion.span>
                     </motion.div>
 
                     <div className="relative z-10 max-w-2xl lg:max-w-[56%]">

@@ -235,6 +235,11 @@
         transition: background 220ms linear;
     }
 
+    .hero-mobile-lens,
+    .hero-profile-online {
+        display: none;
+    }
+
     .hero-telemetry-rail {
         background: linear-gradient(90deg, hsl(var(--background) / 0.18), transparent);
     }
@@ -443,6 +448,62 @@
             mask-image: linear-gradient(0deg, black 0%, black 68%, transparent 100%);
             -webkit-mask-image: linear-gradient(0deg, black 0%, black 68%, transparent 100%);
         }
+
+        .hero-portrait {
+            opacity: 0.72;
+            filter: contrast(1.1) brightness(0.86);
+            transform: scale(1.01);
+        }
+
+        .hero-portrait-online .hero-portrait {
+            opacity: 0.9;
+            filter: contrast(1.14) brightness(0.98) sepia(0.06);
+            transform: scale(1.035) translate3d(0, -0.25rem, 0);
+        }
+
+        .hero-portrait-wash {
+            background:
+                radial-gradient(15rem circle at 70% 40%, hsl(var(--accent) / 0.16), transparent 68%),
+                linear-gradient(0deg, hsl(var(--background) / 0.72) 0%, hsl(var(--background) / 0.18) 43%, transparent 70%),
+                linear-gradient(90deg, hsl(var(--background) / 0.18), transparent 44%);
+        }
+
+        .hero-mobile-lens {
+            display: block;
+            pointer-events: none;
+            background:
+                radial-gradient(8rem circle at 58% 43%, transparent 58%, hsl(var(--accent) / 0.34) 59%, transparent 61%),
+                radial-gradient(13rem circle at 58% 43%, hsl(var(--accent) / 0.13), transparent 68%);
+            mix-blend-mode: screen;
+        }
+
+        .hero-mobile-lens::after {
+            position: absolute;
+            inset: 0;
+            content: "";
+            background-image: radial-gradient(hsl(var(--accent) / 0.55) 1px, transparent 1.5px);
+            background-position: center;
+            background-size: 42px 42px;
+            mask-image: radial-gradient(9rem circle at 58% 43%, black 0%, transparent 72%);
+            -webkit-mask-image: radial-gradient(9rem circle at 58% 43%, black 0%, transparent 72%);
+            opacity: 0.5;
+        }
+
+        .hero-profile-online {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            text-shadow: 0 1px 16px hsl(var(--background));
+        }
+
+        .hero-profile-online::before {
+            width: 0.4rem;
+            height: 0.4rem;
+            border-radius: 9999px;
+            content: "";
+            background: hsl(var(--accent));
+            box-shadow: 0 0 12px hsl(var(--accent) / 0.75);
+        }
     }
 
     .scrollbar-hide {
@@ -469,6 +530,7 @@
     .hero-orb,
     .hero-signal-field,
     .hero-portrait-wash,
+    .hero-mobile-lens,
     .proof-signal,
     .career-trace {
         display: none;
