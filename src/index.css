@@ -1,129 +1,206 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-    :root {
-        --background: 240 10% 3.9%;
-        --foreground: 0 0% 98%;
-        --card: 240 6% 10%;
-        --card-foreground: 0 0% 98%;
-        --popover: 240 6% 10%;
-        --popover-foreground: 0 0% 98%;
-        --primary: 217 91% 60%;
-        --primary-foreground: 0 0% 98%;
-        --secondary: 240 4% 16%;
-        --secondary-foreground: 0 0% 98%;
-        --muted: 240 4% 16%;
-        --muted-foreground: 240 5% 65%;
-        --accent: 142 71% 45%;
-        --accent-foreground: 0 0% 98%;
-        --destructive: 0 84% 60%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 240 4% 16%;
-        --input: 240 4% 16%;
-        --ring: 217 91% 60%;
-        --radius: 0rem;
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 6% 10%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 6% 10%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 142 71% 45%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 217 91% 60%;
+    --radius: 0rem;
 
-        --surface-elevated: 240 6% 10%;
-        --surface-hover: 240 4% 16%;
-        --glow-primary: 217 91% 60%;
-        --glow-accent: 142 71% 45%;
+    --surface-elevated: 240 6% 10%;
+    --surface-hover: 240 4% 16%;
+    --glow-primary: 217 91% 60%;
+    --glow-accent: 142 71% 45%;
 
-        --sidebar-background: 240 10% 3.9%;
-        --sidebar-foreground: 0 0% 98%;
-        --sidebar-primary: 217 91% 60%;
-        --sidebar-primary-foreground: 0 0% 98%;
-        --sidebar-accent: 240 4% 16%;
-        --sidebar-accent-foreground: 0 0% 98%;
-        --sidebar-border: 240 4% 16%;
-        --sidebar-ring: 217 91% 60%;
-    }
+    --sidebar-background: 240 10% 3.9%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4% 16%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 240 4% 16%;
+    --sidebar-ring: 217 91% 60%;
+  }
 }
 
 @layer base {
-    html {
-        scroll-behavior: smooth;
+  /* Hide native cursor on desktop — InteractiveLayer provides custom cursor */
+  @media (pointer: fine) {
+    *, *::before, *::after {
+      cursor: none !important;
     }
+  }
 
-    * {
-        @apply border-border;
-    }
+  html {
+    /* Lenis overrides scroll-behavior */
+    scroll-behavior: auto;
+  }
 
-    body {
-        @apply bg-background text-foreground antialiased;
-        font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    }
+  * {
+    @apply border-border;
+  }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        letter-spacing: -0.04em;
-        text-wrap: balance;
-    }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
 
-    .font-mono {
-        font-family: 'JetBrains Mono', monospace;
-        font-feature-settings: 'tnum';
-    }
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-feature-settings: 'tnum';
+  }
 }
 
-@layer utilities {
-    .text-gradient-primary {
-        @apply bg-clip-text text-transparent;
-        background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
-    }
-
-    .border-glow {
-        border-color: hsl(var(--border));
-        transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .border-glow:hover {
-        border-color: hsl(0 0% 100% / 0.4);
-    }
-
-    .surface-elevated {
-        background-color: hsl(var(--surface-elevated));
-    }
-
-    .clip-enter {
-        clip-path: inset(0 0 100% 0);
-        animation: clipReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-
-    .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-    }
-}
-
+/* ─── Keyframe Animations ─────────────────────────────────────────────────── */
 @keyframes clipReveal {
-    to {
-        clip-path: inset(0 0 0 0);
-    }
+  to { clip-path: inset(0 0 0 0); }
 }
 
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-12px) rotate(1deg); }
+  66%       { transform: translateY(6px) rotate(-0.5deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px hsl(142 71% 45% / 0.3); }
+  50%       { box-shadow: 0 0 24px hsl(142 71% 45% / 0.6); }
+}
+
+/* ─── Utilities ───────────────────────────────────────────────────────────── */
+@layer utilities {
+  /* Typography */
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+  }
+
+  /* Borders */
+  .border-glow {
+    border-color: hsl(var(--border));
+    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .border-glow:hover {
+    border-color: hsl(0 0% 100% / 0.4);
+  }
+
+  /* Surfaces */
+  .surface-elevated {
+    background-color: hsl(var(--surface-elevated));
+  }
+
+  /* Cursor blink */
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  /* Float animation */
+  .animate-float {
+    animation: float-slow 6s ease-in-out infinite;
+  }
+
+  /* Glow pulse */
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Clip entrance */
+  .clip-enter {
+    clip-path: inset(0 0 100% 0);
+    animation: clipReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* GPU layer hints */
+  .gpu {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  /* Depth layers — blur simulates depth */
+  .depth-far {
+    filter: blur(0.5px);
+    opacity: 0.7;
+  }
+  .depth-mid {
+    filter: blur(0px);
+    opacity: 0.9;
+  }
+  .depth-near {
+    filter: blur(0px);
+    opacity: 1;
+  }
+
+  /* Glow utilities */
+  .glow-accent {
+    box-shadow: 0 0 20px -5px hsl(142 71% 45% / 0.5);
+  }
+  .glow-primary {
+    box-shadow: 0 0 20px -5px hsl(217 91% 60% / 0.5);
+  }
+
+  /* Text outline (used in hero KHATI) */
+  .text-outline {
+    -webkit-text-stroke: 1px hsl(var(--foreground) / 0.4);
+    color: transparent;
+  }
+}
+
+/* ─── 3D perspective for project cards ───────────────────────────────────── */
+.perspective-container {
+  perspective: 1000px;
+}
+
+/* ─── Custom scrollbar for code blocks ───────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground) / 0.3); }
+
+/* ─── Print styles ────────────────────────────────────────────────────────── */
 @media print {
-    .no-print {
-        display: none !important;
-    }
-
-    .print-only {
-        display: block !important;
-    }
-
-    body {
-        background: white;
-        color: black;
-    }
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+  body { background: white; color: black; }
+  /* Restore cursor for print */
+  *, *::before, *::after { cursor: auto !important; }
 }
