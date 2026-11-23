@@ -1,12 +1,11 @@
-import { motion } from "framer-motion";
-import ProjectCard from "./ProjectCard";
-import matchlensImg from "@/assets/matchlens-project.jpg";
-import pinnImg from "@/assets/pinn-project.jpg";
-import opdImg from "@/assets/opd-project.jpg";
-import hamroImg from "@/assets/hamrobazaar-project.jpg";
-import pharmacyImg from "@/assets/pharmacy-project.jpg";
-import dataExtractorImg from "@/assets/data-extractor-project.png";
-import llmEvalImg from "@/assets/llm-eval-dashboard.jpeg";
+import matchlensImg from '@/assets/matchlens-project.jpg';
+import pinnImg from '@/assets/pinn-project.jpg';
+import opdImg from '@/assets/opd-project.jpg';
+import hamroImg from '@/assets/hamrobazaar-project.jpg';
+import pharmacyImg from '@/assets/pharmacy-project.jpg';
+import dataExtractorImg from '@/assets/data-extractor-project.png';
+import llmEvalImg from '@/assets/llm-eval-dashboard.jpeg';
+import cguardImg from '@/assets/cguard-project.png';
 
 const flagshipProjects = [
     {
@@ -74,110 +73,141 @@ const flagshipProjects = [
     },
 ];
 
-const selectedWork = [
-    {
-        title: "LLM EVAL",
-        subtitle: "Open-source model evaluation framework",
-        description: "A self-hostable framework for catching model regressions across factuality, safety, hallucination, adversarial prompts, and reasoning.",
-        metrics: [
-            { label: "Evaluation suite", value: "27 tests" },
-            { label: "Hallucination accuracy", value: "86%" },
-            { label: "Baseline lift", value: "+36 pts" },
-            { label: "Judge chain", value: "3 tiers" },
-        ],
-        tech: ["Flask", "PostgreSQL", "Groq", "Next.js", "Neon"],
-        liveLink: "https://llm-eval-silk.vercel.app/",
-        githubLink: "https://github.com/AyushkhatiDev/llm-eval",
-        researchLink: "https://lnkd.in/gGEPiHsS",
-        image: llmEvalImg,
-    },
-    {
-        title: "DATA EXTRACTOR",
-        subtitle: "Resilient multi-source extraction platform",
-        description: "A queue-backed multi-source extraction pipeline with validation, cross-source deduplication, and local-first AI enrichment.",
-        metrics: [
-            { label: "Sources", value: "9+" },
-            { label: "Enrichment", value: "Local-first" },
-            { label: "Provider strategy", value: "4-tier fallback" },
-            { label: "Exports", value: "CSV · Excel · JSON" },
-        ],
-        tech: ["Flask", "MySQL", "Redis", "Playwright", "Ollama", "LangExtract"],
-        liveLink: "https://data-extractor-1-laq7.onrender.com/",
-        paperLink: "https://github.com/AyushkhatiDev/data-extractor/blob/main/paper/DataExtractor%20copy.pdf",
-        image: dataExtractorImg,
-    },
-    {
-        title: "PINN PDE SOLVER",
-        subtitle: "Physics-informed neural networks",
-        description: "A deep-learning framework that embeds physical laws into neural-network training to solve Heat, Wave, and Burgers equations.",
-        metrics: [
-            { label: "R-squared", value: "0.9995" },
-            { label: "L2 error", value: "≈1e-3" },
-            { label: "Energy change", value: "<2%" },
-            { label: "Test coverage", value: "49 tests" },
-        ],
-        tech: ["PyTorch", "Streamlit", "NumPy", "SciPy", "pytest"],
-        liveLink: "https://ayushkhatidev-physics-informed-neural-n-appstreamlit-app-dcw1oi.streamlit.app/",
-        image: pinnImg,
-    },
-    {
-        title: "OPD SOFTWARE",
-        subtitle: "Multi-tenant healthcare and OPD platform",
-        description: "A healthcare platform with geo-restricted checkout, multi-layer bot protection, real-time queue updates, and six-tier access control.",
-        metrics: [
-            { label: "Out-of-zone checkout", value: "0 failures" },
-            { label: "Bot abuse", value: "0%" },
-            { label: "Queue updates", value: "Real time" },
-            { label: "Access control", value: "6-tier RBAC" },
-        ],
-        tech: ["Flask", "MySQL", "WebSockets", "RBAC", "CSRF"],
-        liveLink: "https://opdsoftware.ayurvedicchikitsalaya.in/",
-        image: opdImg,
-    },
-    {
-        title: "MEDICAL E-COMMERCE",
-        subtitle: "Production pharmacy platform",
-        description: "End-to-end medical commerce with a hybrid cart, dynamic GST and coupon calculation, prescription uploads, and server-validated payments.",
-        metrics: [
-            { label: "Payments", value: "Razorpay" },
-            { label: "Cart", value: "Hybrid" },
-            { label: "Security", value: "AES + RBAC" },
-            { label: "Query health", value: "N+1 fixed" },
-        ],
-        tech: ["Flask", "SQLAlchemy", "Razorpay", "Alembic", "AES"],
-        liveLink: "https://store.ayurvedicchikitsalaya.in/",
-        image: pharmacyImg,
-    },
-];
+const projects = [
+  {
+    title: 'ConcurrencyGuard',
+    subtitle: 'Python Concurrency Security Analyzer',
+    description:
+      'I built an offline Python analyzer that traces race conditions across database queries, background jobs, and shared state. It checks concurrent execution paths and suggests fixes that preserve comments and formatting.',
+    metrics: [
+      { label: 'Semantic Rules', value: '21 Rules' },
+      { label: 'External APIs', value: '0 Required' },
+      { label: 'Current Release', value: 'v3.4.0' },
+    ],
+    tech: ['Python', 'AST', 'LibCST', 'LSP', 'GitHub Actions'],
+    liveLink: 'https://concurrencyguard.dev',
+    githubLink: 'https://github.com/AyushkhatiDev/concurrency-guard',
+    image: cguardImg,
+    accent: 'hsl(12 93% 55%)',
+    accentRGB: '248,86,44',
+  },
+  ...flagshipProjects,
+  {
+    title: 'LLM EVAL',
+    subtitle: 'Open-Source LLM Evaluation Framework',
+    description:
+      'Built a self-hostable evaluation system for tracking LLM regressions across factual accuracy, safety refusals, hallucination resistance, adversarial prompts, and reasoning. The framework runs a 27-test suite, uses a 3-tier judge chain, auto-generates prompt injections, and persists every run to PostgreSQL with a live inspection dashboard.',
+    metrics: [
+      { label: 'Test Suite', value: '27 Checks' },
+      { label: 'Accuracy', value: '86%' },
+      { label: 'Judge Chain', value: '3 Tiers' },
+    ],
+    tech: ['Flask', 'PostgreSQL', 'Groq', 'Next.js', 'Vercel'],
+    liveLink: 'https://lnkd.in/g9kkTh7q',
+    githubLink: 'https://lnkd.in/gp_RxvCw',
+    paperLink: 'https://lnkd.in/gGEPiHsS',
+    image: llmEvalImg,
+    accent: 'hsl(173 80% 40%)',
+    accentRGB: '20,184,166',
+  },
+  {
+    title: 'DATA EXTRACTOR',
+    subtitle: 'Multi-Source Extraction Platform',
+    description:
+      'Engineered a multi-source data extraction pipeline leveraging Playwright and BeautifulSoup, augmented by a local-first AI enrichment stack (Ollama, LangExtract). Implemented robust validation, cross-source deduplication, and a 4-tier provider fallback chain.',
+    metrics: [
+      { label: 'AI Stack', value: 'Local-First' },
+      { label: 'Extraction', value: '9+ Sources' },
+      { label: 'Export', value: 'CSV/Excel/JSON' },
+    ],
+    tech: ['Flask', 'MySQL', 'Redis', 'Playwright', 'Ollama'],
+    liveLink: 'https://data-extractor-1-laq7.onrender.com/',
+    githubLink: undefined,
+    paperLink:
+      'https://github.com/AyushkhatiDev/data-extractor/blob/main/paper/DataExtractor%20copy.pdf',
+    image: dataExtractorImg,
+    accent: 'hsl(142 71% 45%)',
+    accentRGB: '34,197,94',
+  },
+  {
+    title: 'PINN PDE SOLVER',
+    subtitle: 'Physics-Informed Neural Networks',
+    description:
+      'Built a deep learning framework embedding physical laws into neural network training via automatic differentiation, solving Heat, Wave, and Burgers equations without labelled data.',
+    metrics: [
+      { label: 'R-Squared', value: '0.9995' },
+      { label: 'L2 Error', value: '≈1e-3' },
+      { label: 'Tests', value: '49 Passing' },
+    ],
+    tech: ['PyTorch', 'Streamlit', 'NumPy', 'SciPy', 'Auto-Diff'],
+    liveLink:
+      'https://ayushkhatidev-physics-informed-neural-n-appstreamlit-app-dcw1oi.streamlit.app/',
+    githubLink: undefined,
+    image: pinnImg,
+    accent: 'hsl(217 91% 60%)',
+    accentRGB: '96,165,250',
+  },
+  {
+    title: 'OPD SOFTWARE',
+    subtitle: 'Healthcare & OPD Platform',
+    description:
+      'Eliminated 100% of out-of-zone checkout failures via geo-restriction engine. Reduced bot abuse to zero with a multi-layer security stack and real-time WebSocket broadcasting in a multi-tenant system with 6-tier RBAC.',
+    metrics: [
+      { label: 'Bot Abuse', value: '0%' },
+      { label: 'Time Saved', value: '3+ hrs/day' },
+      { label: 'RBAC Tiers', value: '6' },
+    ],
+    tech: ['Flask', 'MySQL', 'WebSockets', 'RBAC', 'reCAPTCHA'],
+    liveLink: 'https://opdsoftware.ayurvedicchikitsalaya.in/',
+    githubLink: undefined,
+    image: opdImg,
+    accent: 'hsl(280 70% 60%)',
+    accentRGB: '167,139,250',
+  },
+  {
+    title: 'HAMROBAZAAR',
+    subtitle: 'B2B E-Commerce Platform',
+    description:
+      'Sustained 99.8% production uptime serving 2,500+ businesses across 10,000+ SKUs. Reduced p99 API latency by 40% via B-tree indexing and query optimization.',
+    metrics: [
+      { label: 'Uptime', value: '99.8%' },
+      { label: 'p99 Latency', value: '200ms' },
+      { label: 'Businesses', value: '2,500+' },
+    ],
+    tech: ['Flask', 'MySQL', 'Redis', 'Nginx', 'Docker'],
+    liveLink: 'https://hamrobazaar.in/',
+    githubLink: undefined,
+    image: hamroImg,
+    accent: 'hsl(38 92% 50%)',
+    accentRGB: '251,191,36',
+  },
+  {
+    title: 'MEDICAL E-COMMERCE',
+    subtitle: 'Production-Grade Pharmacy',
+    description:
+      'Architected end-to-end medical e-commerce with hybrid cart engine, dynamic GST and coupon computation, geo-serviceability enforcement, and secure Razorpay payment flow.',
+    metrics: [
+      { label: 'Payment', value: 'Razorpay' },
+      { label: 'Security', value: 'AES + RBAC' },
+      { label: 'Query Perf', value: 'N+1 Fixed' },
+    ],
+    tech: ['Flask', 'SQLAlchemy', 'Razorpay', 'Alembic', 'AES'],
+    liveLink: 'https://store.ayurvedicchikitsalaya.in/',
+    githubLink: undefined,
+    image: pharmacyImg,
+    accent: 'hsl(0 84% 60%)',
+    accentRGB: '248,113,113',
+  },
+] as const;
 
-const ProjectsSection = () => (
-    <section className="border-b border-foreground/10 py-20 sm:py-24 lg:py-32" id="projects">
-        <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-12 grid gap-5 md:grid-cols-12 md:items-end lg:mb-16">
-                <div className="md:col-span-8">
-                    <span className="mb-4 block font-mono text-[10px] uppercase tracking-[0.18em] text-accent">04 / Selected systems</span>
-                    <h2 className="max-w-3xl text-4xl font-semibold leading-[0.98] tracking-[-0.065em] sm:text-6xl">Engineering work with evidence attached.</h2>
-                </div>
-                <p className="max-w-sm text-sm leading-relaxed text-muted-foreground md:col-span-4 md:justify-self-end">Four systems that show the range: deterministic streams, real-time video, security tooling, and production commerce.</p>
-            </motion.div>
-            <div className="space-y-6 sm:space-y-8">
-                {flagshipProjects.map((project, i) => <ProjectCard key={project.title} {...project} index={i} />)}
-            </div>
-
-            <div className="mt-24 border-t border-foreground/15 pt-10 sm:mt-32 sm:pt-12">
-                <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-                    <div>
-                        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">Archive / Selected work</p>
-                        <h3 className="mt-3 text-2xl font-medium tracking-[-0.04em] sm:text-3xl">More systems, quieter on purpose.</h3>
-                    </div>
-                    <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">Additional experiments and production platforms for readers who want a fuller view of the work.</p>
-                </div>
-                <div className="space-y-6 opacity-80 sm:space-y-8">
-                    {selectedWork.map((project, i) => <ProjectCard key={project.title} {...project} index={i + flagshipProjects.length} />)}
-                </div>
-            </div>
-        </div>
-    </section>
-);
-
-export default ProjectsSection;
+export default function ProjectsSection() {
+  return <section id="projects" className="work-index">
+    <h2>Selected work</h2>
+    {projects.map((project, index) => <article key={project.title} className="work-entry">
+      {project.image && <a href={project.liveLink} aria-label={'Visit ' + project.title}><img loading="lazy" src={project.image} alt={index === 0 ? 'ConcurrencyGuard race inspector showing a live invariant trace' : project.subtitle} /></a>}
+      <div><small>{project.subtitle}</small><h3>{project.title}</h3><p>{project.description}</p>
+      <details><summary>Engineering details</summary><p>{project.tech.join(' · ')}</p><ul>{project.metrics.map(metric => <li key={metric.label}>{metric.label} — {metric.value}</li>)}</ul></details>
+      <nav aria-label={project.title + ' links'}>{project.liveLink && <a href={project.liveLink}>Visit project ↗</a>}{project.githubLink && <a href={project.githubLink}>GitHub ↗</a>}{'demoVideoLink' in project && project.demoVideoLink && <a href={project.demoVideoLink}>Watch demo ↗</a>}{'streamLink' in project && project.streamLink && <a href={project.streamLink}>Live stream ↗</a>}{'statsLink' in project && project.statsLink && <a href={project.statsLink}>Package stats ↗</a>}{'paperLink' in project && <a href={project.paperLink}>Read paper ↗</a>}</nav></div>
+    </article>)}
+  </section>;
+}
