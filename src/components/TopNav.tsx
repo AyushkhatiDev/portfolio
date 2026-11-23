@@ -127,7 +127,7 @@ const TopNav = () => {
           })}
 
           <MagneticLink
-            href="https://drive.google.com/file/d/1RzCD80CM3mP-a_N1X5TaKW1Pw4tm6edg/view?usp=drivesdk"
+            href="/ayush-khati-resume.pdf"
             className="flex items-center gap-1.5 font-mono text-[10px] text-muted-foreground hover:text-foreground uppercase tracking-widest transition-colors"
           >
             <Terminal size={12} strokeWidth={1} />

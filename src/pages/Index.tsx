@@ -20,7 +20,7 @@ const Index = () => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         window.open(
-          "https://drive.google.com/file/d/1OKL3qENSfGGf6PU-twSgnwmeKxehwFT5/view?usp=drivesdk",
+          "/ayush-khati-resume.pdf",
           "_blank"
         );
       }
@@ -54,12 +54,12 @@ const Index = () => {
       <InteractiveLayer />
 
       {/* Layer 10: UI — all existing React sections */}
-      <div className="relative min-h-screen pb-10" style={{ zIndex: 10 }}>
+      <div className="relative min-h-screen overflow-x-clip pb-10" style={{ zIndex: 10 }}>
         <TopNav />
         <HeroSection />
         <Suspense fallback={null}>
-          <AboutSection />
           <ProjectsSection />
+          <AboutSection />
           <SkillsSection />
           <ContactSection />
           <SystemFooter currentSection={currentSection} />
