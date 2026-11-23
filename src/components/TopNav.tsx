@@ -6,9 +6,9 @@ const resumeUrl = "/ayush-khati-resume.pdf";
 
 const links = [
     { label: "Overview", id: "hero" },
+    { label: "Work", id: "projects" },
     { label: "Impact", id: "impact" },
     { label: "Experience", id: "experience" },
-    { label: "Systems", id: "projects" },
     { label: "Stack", id: "skills" },
     { label: "Contact", id: "contact" },
 ];
@@ -22,12 +22,18 @@ const TopNav = () => {
 
     useEffect(() => {
         const sections = links.map(({ id }) => document.getElementById(id)).filter((section): section is HTMLElement => Boolean(section));
-        const observer = new IntersectionObserver((entries) => {
-            const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-            if (visible) setActiveId(visible.target.id);
-        }, { rootMargin: "-18% 0px -58% 0px", threshold: [0.08, 0.24, 0.48] });
-        sections.forEach((section) => observer.observe(section));
-        return () => observer.disconnect();
+        const updateActiveSection = () => {
+            const marker = window.innerHeight * 0.3;
+            const current = sections.filter(section => section.getBoundingClientRect().top <= marker).pop();
+            if (current) setActiveId(current.id);
+        };
+        updateActiveSection();
+        window.addEventListener("scroll", updateActiveSection, { passive: true });
+        window.addEventListener("resize", updateActiveSection);
+        return () => {
+            window.removeEventListener("scroll", updateActiveSection);
+            window.removeEventListener("resize", updateActiveSection);
+        };
     }, []);
 
     useEffect(() => {
@@ -106,7 +112,7 @@ const TopNav = () => {
                 {menuOpen && (
                     <motion.div initial={reduceMotion ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={reduceMotion ? undefined : { opacity: 0 }} transition={{ duration: 0.22 }} className="fixed inset-0 z-50 lg:hidden">
                         <button type="button" aria-label="Close navigation menu" onClick={closeDrawer} className="absolute inset-0 bg-background/75 backdrop-blur-sm" />
-                        <motion.div ref={drawerRef} id="mobile-navigation" role="dialog" aria-modal="true" aria-label="Site navigation" initial={reduceMotion ? false : { x: "100%" }} animate={{ x: 0 }} exit={reduceMotion ? undefined : { x: "100%" }} transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }} className="absolute inset-y-0 right-0 flex w-full max-w-md flex-col border-l border-foreground/15 bg-background px-6 py-6 sm:px-8">
+                        <motion.div ref={drawerRef} id="mobile-navigation" role="dialog" aria-modal="true" aria-label="Site navigation" initial={reduceMotion ? false : { x: "100%" }} animate={{ x: 0 }} exit={reduceMotion ? undefined : { x: "100%" }} transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }} className="absolute inset-y-0 right-0 flex overflow-y-auto w-full max-w-md flex-col border-l border-foreground/15 bg-background px-6 py-6 sm:px-8">
                             <div className="flex items-center justify-between border-b border-foreground/10 pb-5">
                                 <span className="font-mono text-xs font-semibold tracking-[0.16em]">AK<span className="text-accent">.</span></span>
                                 <button type="button" onClick={closeDrawer} className="inline-flex min-h-11 items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-muted-foreground transition-colors hover:text-accent"><X size={17} /> Close</button>

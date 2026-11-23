@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import ConcurrencyGuard from "./ConcurrencyGuard";
 import ProjectCard from "./ProjectCard";
 import matchlensImg from "@/assets/matchlens-project.jpg";
 import pinnImg from "@/assets/pinn-project.jpg";
@@ -151,31 +151,20 @@ const selectedWork = [
 ];
 
 const ProjectsSection = () => (
-    <section className="border-b border-foreground/10 py-20 sm:py-24 lg:py-32" id="projects">
+    <section className="border-b border-foreground/10 py-14 sm:py-16 lg:py-20" id="projects">
         <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-12 grid gap-5 md:grid-cols-12 md:items-end lg:mb-16">
-                <div className="md:col-span-8">
-                    <span className="mb-4 block font-mono text-[10px] uppercase tracking-[0.18em] text-accent">04 / Selected systems</span>
-                    <h2 className="max-w-3xl text-4xl font-semibold leading-[0.98] tracking-[-0.065em] sm:text-6xl">Engineering work with evidence attached.</h2>
-                </div>
-                <p className="max-w-sm text-sm leading-relaxed text-muted-foreground md:col-span-4 md:justify-self-end">Four systems that show the range: deterministic streams, real-time video, security tooling, and production commerce.</p>
-            </motion.div>
+            <h2 className="section-heading">Selected work</h2>
+            <ConcurrencyGuard />
             <div className="space-y-6 sm:space-y-8">
                 {flagshipProjects.map((project, i) => <ProjectCard key={project.title} {...project} index={i} />)}
             </div>
 
-            <div className="mt-24 border-t border-foreground/15 pt-10 sm:mt-32 sm:pt-12">
-                <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-                    <div>
-                        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">Archive / Selected work</p>
-                        <h3 className="mt-3 text-2xl font-medium tracking-[-0.04em] sm:text-3xl">More systems, quieter on purpose.</h3>
-                    </div>
-                    <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">Additional experiments and production platforms for readers who want a fuller view of the work.</p>
-                </div>
-                <div className="space-y-6 opacity-80 sm:space-y-8">
+            <details className="mt-10 border-y border-foreground/15">
+                <summary className="cursor-pointer py-6 text-xl font-medium">Project archive ({selectedWork.length})</summary>
+                <div className="space-y-6 sm:space-y-8">
                     {selectedWork.map((project, i) => <ProjectCard key={project.title} {...project} index={i + flagshipProjects.length} />)}
                 </div>
-            </div>
+            </details>
         </div>
     </section>
 );

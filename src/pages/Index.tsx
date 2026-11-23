@@ -28,8 +28,8 @@ const Index = () => {
             <TopNav />
             <main>
                 <HeroSection />
-                <AboutSection />
                 <ProjectsSection />
+                <AboutSection />
                 <SkillsSection />
                 <ContactSection />
             </main>
