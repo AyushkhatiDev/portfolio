@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website showcasing projects, skills, and professional experience.
 
-**Visit the live site**: [[https://portfolio-peach-nine-88.vercel.app/](https://portfolio-peach-nine-88.vercel.app/)](https://portfoliokhati.netlify.app/)
+**Visit the live site**: (https://portfoliokhati.netlify.app/)
 
 ## Overview
 
