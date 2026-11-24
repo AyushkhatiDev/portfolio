@@ -20,7 +20,14 @@ export default function AboutSection() {
         </div></section>
         <section id="experience" className="wrap chapter"><h2>Where I’ve worked<span>.</span></h2>
             <div className="career"><figure><img src={portrait} alt="Ayush Khati" width="605" height="701" loading="lazy"/><figcaption>Ayush Khati · Siliguri, India</figcaption></figure>
-            <ol><li><small>Oct 2025 – present</small><h3>Backend Software Engineer</h3><a href="https://www.udeckservices.com/">Udeck Services</a><p>I own the Evan Merchantile backend, from idempotent ledger writes to observability across 198 endpoints.</p></li>
+            <ol>
+                <li>
+                    <small>Current · Startup leadership</small>
+                    <h3>Chief Technology Officer</h3>
+                    <a href="https://www.teoor.tech/#h-hero">Teeor Technologies</a>
+                    <p>I lead engineering at Teeor. We’re starting with accounting firms in India, building AI agents for GST reconciliation and tax notice workflows.</p>
+                </li>
+                <li><small>Oct 2025 – present</small><h3>Backend Software Engineer</h3><a href="https://www.udeckservices.com/">Udeck Services</a><p>I own the Evan Merchantile backend, from idempotent ledger writes to observability across 198 endpoints. Our pipelines process 1.2 million events a day.</p></li>
                 <li><small>Apr – Oct 2025</small><h3>Backend Engineering Intern</h3><a href="https://www.udeckservices.com/">Udeck Services</a><p>I built B2B checkout and tiered pricing for HamroBazaar and cut request time from 3.96s to 1.15s.</p></li>
                 <li><small>Education</small><h3>Bachelor of Computer Applications</h3><p>Siliguri Institute of Technology · CGPA 8.1/10. Fedora contributor and technical lead for TechFrenzy and NSS.</p></li>
             </ol></div>
