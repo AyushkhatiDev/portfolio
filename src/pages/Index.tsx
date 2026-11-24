@@ -25,8 +25,9 @@ const Index = () => {
 
     return (
         <div className="min-h-screen bg-background">
+            <a className="skip" href="#main">Skip to content</a>
             <TopNav />
-            <main>
+            <main id="main" tabIndex={-1}>
                 <HeroSection />
                 <ProjectsSection />
                 <AboutSection />

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Download, Github, Linkedin, Mail, Menu, X } from "lucide-react";
+import { Download, Github, Linkedin, Mail, Menu, X, Layers3 } from "lucide-react";
 
 const resumeUrl = "/ayush-khati-resume.pdf";
 
@@ -88,19 +88,19 @@ const TopNav = () => {
         <>
             <header className="sticky top-0 z-40 border-b border-foreground/10 bg-background/85 backdrop-blur-md">
                 <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-5 px-5 py-4 sm:px-8 lg:px-12">
-                    <a href="#hero" className="shrink-0 font-mono text-xs font-semibold tracking-[0.16em] text-foreground">AK<span className="text-accent">.</span></a>
+                    <a href="#hero" className="atlas-brand" aria-label="Ayush Khati, Engineering Atlas home"><Layers3 size={25} strokeWidth={1.8}/> Engineering Atlas</a>
 
                     <nav aria-label="Main navigation" className="hidden items-center gap-1 lg:flex">
                         {links.map(({ label, id }) => (
-                            <a key={id} href={`#${id}`} aria-current={activeId === id ? "page" : undefined} className={`group relative px-3 py-2 text-sm transition-colors ${activeId === id ? "text-foreground" : "text-foreground/60 hover:text-foreground"}`}>
+                            <a key={id} href={`#${id}`} aria-current={activeId === id ? "location" : undefined} className={`group relative px-3 py-2 text-sm transition-colors ${activeId === id ? "text-foreground" : "text-foreground/60 hover:text-foreground"}`}>
                                 <span className="relative z-10">{label}</span>
                                 <span aria-hidden="true" className="absolute inset-x-3 bottom-1 h-px origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100" />
-                                {activeId === id && <motion.span layoutId="desktop-nav-indicator" transition={{ type: "spring", stiffness: 420, damping: 34 }} className="absolute inset-x-3 bottom-1 h-px bg-accent" />}
+                                {activeId === id && <motion.span layoutId={reduceMotion ? undefined : "desktop-nav-indicator"} transition={{ type: "spring", stiffness: 420, damping: 34 }} className="absolute inset-x-3 bottom-1 h-px bg-accent" />}
                             </a>
                         ))}
                     </nav>
 
-                    <a href={resumeUrl} download className="hidden shrink-0 items-center gap-2 border border-foreground/20 px-3 py-2 font-mono text-[10px] uppercase tracking-wider transition-colors hover:border-accent hover:text-accent lg:flex"><Download size={13} /> Resume PDF <span className="text-foreground/40">⌘K</span></a>
+                    <a href={resumeUrl} download className="hidden shrink-0 items-center gap-2 border border-foreground/20 px-3 py-2 font-mono text-[10px] uppercase tracking-wider transition-colors hover:border-accent hover:text-accent lg:flex"><Download size={13} /> Resume PDF <span className="text-muted-foreground">⌘K</span></a>
 
                     <button ref={triggerRef} type="button" aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen((open) => !open)} className="inline-flex min-h-11 items-center gap-2 border border-foreground/20 px-3 font-mono text-[10px] uppercase tracking-wider text-foreground transition-colors hover:border-accent hover:text-accent lg:hidden">
                         {menuOpen ? <X size={16} /> : <Menu size={16} />} {menuOpen ? "Close" : "Menu"}
