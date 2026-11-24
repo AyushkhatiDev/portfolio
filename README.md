@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website showcasing projects, skills, and professional experience.
 
-**Visit the live site**: [https://portfoliokhati.netlify.app/](https://portfoliokhati.netlify.app/)
+**Visit the live site**: [https://portfolio-peach-nine-88.vercel.app/](https://portfolio-peach-nine-88.vercel.app/)
 
 ## Overview
 
@@ -101,4 +101,4 @@ This project is open source and available under the MIT License.
 
 ## Contact
 
-For inquiries, feel free to reach out through the contact form on the [portfolio website](https://portfoliokhati.netlify.app/) or connect on social media.
+For inquiries, feel free to reach out through the contact form on the [portfolio website](https://portfolio-peach-nine-88.vercel.app/) or connect on social media.
