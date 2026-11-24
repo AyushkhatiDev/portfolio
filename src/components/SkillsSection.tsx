@@ -1,5 +1,3 @@
-import { ProjectArchive } from "./ProjectsSection";
-
 const stack = [
     ["API development", "Python, FastAPI, Flask, SQLAlchemy"],
     ["Distributed systems", "Celery, Redis, Azure Event Hubs, WebSockets"],
@@ -11,6 +9,5 @@ const stack = [
 export default function SkillsSection() {
     return <section className="wrap chapter" id="skills"><h2>Tools of the trade<span>.</span></h2>
         <dl className="stack">{stack.map(([name, tools])=><div key={name}><dt>{name}</dt><dd>{tools}</dd></div>)}</dl>
-        <ProjectArchive/>
     </section>;
 }

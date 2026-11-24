@@ -2,8 +2,12 @@ import { useRef, useState, type CSSProperties } from "react";
 import { useInView, useReducedMotion } from "framer-motion";
 import { RotateCcw } from "lucide-react";
 
-type Drawing = "pipeline" | "race" | "match" | "feeds";
+export type Drawing = "pipeline" | "race" | "match" | "feeds" | "policy" | "terrain" | "cache" | "scan";
 const captions: Record<Drawing, [string, string]> = {
+    policy: ["Policy decision", "A simulated payment request is checked against policy and held for approval."],
+    terrain: ["Incident response", "A hillside sensor raises an incident, and a mapped route connects the response team to the incident."],
+    cache: ["Semantic lookup", "A matching query returns a cached answer. A cache miss continues to the model."],
+    scan: ["Static analysis", "The scanner traces a Python syntax tree and marks a finding for review."],
     pipeline: ["Event recovery", "Events enter a queue. A worker retries failed jobs before committing a write."],
     race: ["Concurrency trace", "Two requests converge on the same piece of shared state."],
     match: ["Match event sequence", "Three passes trace a sequence of events across a football pitch."],
@@ -72,15 +76,74 @@ function Feeds() {
     })}</>;
 }
 
+function Policy() {
+    const route = "M54 86H145L181 56H239Q250 56 258 48H304";
+    return <>
+        <path className="guide" d="M28 130h300M180 17v130"/>
+        <path className="wire" d={route}/>
+        <path strokeDasharray="4 4" d="M181 94l24 20h99"/>
+        <rect x="29" y="69" width="44" height="34" rx="4" fill="#e2e8fa"/>
+        <path d="M30 79h42m-34 15h12"/>
+        <path fill="#d1dcff" d="m178 43 31 12v23q0 23-31 39-31-16-31-39V55Z"/>
+        <path d="m165 78 9 9 17-20" strokeWidth="3"/>
+        <circle cx="304" cy="48" r="10" fill="#f5cfaa"/><path d="M301 43v10m6-10v10"/>
+        <circle cx="304" cy="114" r="5" fill="#edf0fd"/>
+        <g className="labels"><text x="21" y="127">Request</text><text x="151" y="140">Policy</text><text x="249" y="29">Approval</text><text x="278" y="142">Allow</text></g>
+        <Signal path={route}/>
+    </>;
+}
+
+function Terrain() {
+    const route = "M48 112Q83 86 115 102T171 98L208 74Q240 49 282 64";
+    return <>
+        <g stroke="#90a5be" strokeWidth="1">
+            {[0,1,2,3,4,5].map(i=><path key={i} transform={`translate(${181-i*7} ${69+i*2}) scale(${1-i*.13})`} d="M-153 37C-166 6-119-37-74-38S-4-61 41-41 132-60 153-15 110 47 54 48-8 30-51 54-135 61-153 37Z"/>)}
+        </g>
+        <path className="wire" d={route} strokeDasharray="4 3"/>
+        <rect x="40" y="104" width="16" height="16" fill="#dae2fb"/>
+        <circle cx="282" cy="64" r="12" fill="#f4d8ae"/><circle cx="282" cy="64" r="3" fill="currentColor"/>
+        <path d="M270 56 251 32h-33" /><g className="labels"><text x="181" y="25">Sensor alert</text><text x="24" y="149">Response team</text></g>
+        <Signal path={route}/>
+    </>;
+}
+
+function Cache() {
+    const route = "M52 83H157Q175 83 189 65L203 47H288";
+    return <>
+        <path className="wire" d={route}/><path d="M157 83q18 0 32 18l14 18h85" strokeDasharray="4 4"/>
+        <circle cx="52" cy="83" r="10" fill="#d4dffa"/><rect x="126" y="61" width="47" height="42" rx="6" fill="#dce4fc"/>
+        <path d="M136 73h27m-27 8h27m-27 8h17"/>
+        <g className="labels"><text x="21" y="116">Query</text><text x="128" y="134">Cache</text><text x="217" y="34">Hit · reply</text><text x="207" y="147">Miss · model</text></g>
+        <circle cx="288" cy="47" r="7" fill="#e5af77"/><rect x="282" y="113" width="12" height="12" fill="#e6eafa"/>
+        <Signal path={route}/>
+    </>;
+}
+
+function Scan() {
+    const route = "M55 82H111L163 55H202L255 83H291";
+    return <>
+        <rect x="23" y="48" width="58" height="70" rx="4" fill="#e2e8fa"/><path d="M34 63h35m-35 10h23m-23 10h31m-31 10h18"/>
+        <path className="wire" d="M81 82h30l52-27h39l53 28h36"/>
+        <path d="m111 82 52 28h40m-1-55 35-30h32" />
+        {[[111,82],[163,55],[163,110],[202,55],[203,110],[269,25]].map(([x,y])=><circle key={x+"-"+y} cx={x} cy={y} r="5" fill="#dce4fc"/>)}
+        <path d="m291 68 14 24h-28Z" fill="#f4cf9e"/><path d="M291 75v8m0 2v2"/>
+        <g className="labels"><text x="19" y="144">Source</text><text x="129" y="144">Syntax tree</text><text x="258" y="122">Finding</text></g>
+        <Signal path={route}/>
+    </>;
+}
+
+const drawings = {pipeline: Pipeline, race: Race, match: Match, feeds: Feeds, policy: Policy, terrain: Terrain, cache: Cache, scan: Scan};
+
 export default function AtlasDrawing({ kind }: { kind: Drawing }) {
     const ref = useRef<HTMLElement>(null);
     const inView = useInView(ref, {once:true, amount:0.23});
     const reduced = useReducedMotion();
     const [replay, setReplay] = useState(0);
     const [title, description] = captions[kind];
+    const Illustration = drawings[kind];
     return <figure ref={ref} className={`drawing drawing-${kind}`}>
         <svg key={replay} className={inView && !reduced ? "playing" : ""} viewBox={kind === "pipeline" ? "0 0 360 282" : "0 0 360 166"} role="img" aria-label={description} fill="none" stroke="currentColor" strokeWidth="1.4">
-            {kind==="pipeline" && <Pipeline/>}{kind==="race" && <Race/>}{kind==="match" && <Match/>}{kind==="feeds" && <Feeds/>}
+            <Illustration/>
         </svg>
         <figcaption><span>{title}</span>{!reduced && <button type="button" aria-label={`Replay ${title.toLowerCase()}`} onClick={()=>setReplay(n=>n+1)}><RotateCcw size={13}/> Replay</button>}</figcaption>
     </figure>;
